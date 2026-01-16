@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenCode AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f0fdf4; /* emerald-50 */
+        overflow-x: hidden;
+      }
+      
+      code, pre, textarea.code-font {
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(16, 185, 129, 0.5);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(16, 185, 129, 0.8);
+      }
+
+      /* Animations */
+      @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+      }
+
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+        100% { transform: translateY(0px); }
+      }
+
+      /* Seasonal Tree Animations */
+      @keyframes season-foliage {
+        0%, 100% { fill: #fbcfe8; filter: drop-shadow(0 0 15px rgba(251, 207, 232, 0.6)); } /* Spring Pink */
+        25% { fill: #4ade80; filter: drop-shadow(0 0 15px rgba(74, 222, 128, 0.4)); }      /* Summer Green */
+        50% { fill: #15803d; filter: drop-shadow(0 0 10px rgba(21, 128, 61, 0.3)); }       /* Late Summer Dark */
+        75% { fill: #f97316; filter: drop-shadow(0 0 15px rgba(249, 115, 22, 0.5)); }      /* Autumn Orange */
+        90% { fill: #e0f2fe; filter: drop-shadow(0 0 20px rgba(224, 242, 254, 0.8)); }     /* Winter Snow */
+      }
+
+      @keyframes season-trunk {
+        0%, 100% { fill: #a16207; } /* Brown */
+        50% { fill: #713f12; }      /* Dark Brown */
+        90% { fill: #52525b; }      /* Cold Grey */
+      }
+
+      .animate-blob {
+        animation: blob 7s infinite;
+      }
+      
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .animate-season-foliage {
+        animation: season-foliage 24s infinite ease-in-out;
+      }
+      
+      .animate-season-trunk {
+        animation: season-trunk 24s infinite ease-in-out;
+      }
+
+      .animation-delay-2000 {
+        animation-delay: 2s;
+      }
+      
+      .animation-delay-4000 {
+        animation-delay: 4s;
+      }
+
+      /* Falling Leaves Animation */
+      .leaf {
+        position: absolute;
+        top: -10%;
+        width: 25px;
+        height: 25px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310b981' opacity='0.7'%3E%3Cpath d='M12.0003 3C17.2845 3 20.8291 7.21857 20.9959 12.3992L21 12.5528C21 17.7967 16.9706 22.0487 12.0003 22.0487C8.75051 22.0487 5.86988 20.281 4.19531 17.5852C5.97607 17.1652 8.1691 16.3429 10.4552 14.8643C12.8726 13.3006 14.9315 11.2355 16.3312 8.79091C13.4391 10.027 10.043 10.5898 6.50033 10.479C5.46467 6.13621 8.3564 3 12.0003 3Z'/%3E%3C/svg%3E");
+        background-size: cover;
+        opacity: 0;
+        z-index: -1;
+        pointer-events: none;
+        animation: falling linear infinite;
+        filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+      }
+
+      @keyframes falling {
+        0% {
+          opacity: 0;
+          transform: translate(0, 0) rotate(0deg);
+        }
+        10% {
+          opacity: 0.8;
+        }
+        85% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 0;
+          transform: translate(100px, 100vh) rotate(360deg);
+        }
+      }
+
+      /* Glassmorphism */
+      .glass {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      
+      .glass-dark {
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+      
+      .animate-fade-in-scale {
+        animation: fadeInScale 0.5s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      @keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.98); }
+        to { opacity: 1; transform: scale(1); }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.37.0",
+    "recharts": "https://esm.sh/recharts@^3.6.0"
+  }
+}
+</script>
+</head>
+  <body class="text-slate-900 antialiased selection:bg-emerald-200 selection:text-emerald-900">
+    <div id="root"></div>
+  </body>
+</html>
