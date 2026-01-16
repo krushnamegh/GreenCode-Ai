@@ -63,10 +63,13 @@ export const analyzeCode = async (
       }
     });
 
-    const text = response.text;
+    let text = response.text;
     if (!text) {
       throw new Error("No response received from Gemini.");
     }
+    
+    // Clean up markdown code fences if present
+    text = text.replace(/^```json\s*/, '').replace(/\s*```$/, '');
 
     return JSON.parse(text) as AnalysisResult;
 

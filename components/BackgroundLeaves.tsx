@@ -21,11 +21,11 @@ export const BackgroundLeaves: React.FC = () => {
       {/* Seasonal Tree SVG - Bottom Right */}
       <div className="absolute bottom-0 right-[-100px] md:right-[-50px] opacity-40 md:opacity-50 transform scale-75 md:scale-100 origin-bottom-right transition-opacity duration-1000">
         <svg width="600" height="600" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            {/* Trunk */}
-            <path className="animate-season-trunk" d="M100 180 Q105 140 100 100 Q95 80 80 60 L85 65 Q100 85 105 100 Q110 80 130 60 L125 65 Q110 85 105 100 Q105 140 110 180 Z" />
+            {/* Trunk - Start with Spring Brown */}
+            <path className="animate-season-trunk" fill="#a16207" d="M100 180 Q105 140 100 100 Q95 80 80 60 L85 65 Q100 85 105 100 Q110 80 130 60 L125 65 Q110 85 105 100 Q105 140 110 180 Z" />
             
-            {/* Foliage Groups */}
-            <g className="animate-season-foliage">
+            {/* Foliage Groups - Start with Spring Pink */}
+            <g className="animate-season-foliage" fill="#fbcfe8">
                 <circle cx="80" cy="50" r="25" />
                 <circle cx="130" cy="50" r="25" />
                 <circle cx="105" cy="30" r="30" />
